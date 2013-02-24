@@ -1,3 +1,5 @@
+# problem 78
+# divide n balls into k bins: n+k-1 choose n
 gcoins = [1, 2, 5, 10, 20, 50, 100, 200]
 
 d = {}
