@@ -26,3 +26,4 @@ def pence(n, coins=None):
 			accum += pence(n - coin*val, itercoins)
 	d[str(n) + str(coins)] = accum
 	return accum
+
