@@ -1,5 +1,6 @@
 # problem 83
 
+
 from sys import maxint
 
 def matrix_from_file(filename):
