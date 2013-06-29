@@ -25,16 +25,16 @@ def EnumerateArithmeticExpressions(numbers):
   """
   # n is the size of the expression tree
   n = 2 * len(numbers) - 1
-  num_loop = itertools.cycle(numbers)
-  def helper(n):
+  #num_loop = itertools.cycle(numbers)
+  def helper(n, numbers):
     if n == 1:
-      yield float(num_loop.next())
-    for i in xrange(1, n - 1):
-      for left_child in helper(i):
-        for right_child in helper(n - i - 1):
+      yield float(numbers[0])
+    for i in xrange(1, n - 1, 2):
+      for left_child in helper(i, numbers[:(i+1)/2]):
+        for right_child in helper(n - i - 1, numbers[(i+1)/2:]):
           for op in operators:
             yield [op, left_child, right_child]
-  return helper(n)
+  return helper(n, numbers)
 
 def EvalExprTree(tree):
   if type(tree) is float:
