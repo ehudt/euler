@@ -1,21 +1,25 @@
 #!/usr/bin/env python3
 
 import numpy as np
+from gmpy2 import mpz, is_square
 
+# def is_square(x):
+#     return x == int(x**.5)**2
 
 def main():
     print("Problem 94")
-    limit = 1000 * 1000 * 1000
+    limit = mpz(1000 * 1000 * 1000)
     s = 0
-    for x in range(1, limit):
-        for y in [x - 1, x + 1]:
-            perimeter = x + x + y
-            if perimeter > limit:
-                print(s)
-                return
-            h2 = x * x - y * y / 4
-            if y % 2 == 0 or h2 % 4 == 0:
-                s += perimeter
+    x = mpz(1)
+    while x + x + x - 1 <= limit:
+        # x - 1 case
+        if is_square(3 * x - 1) and is_square(x + 1) and x + x + x - 1 <= limit:
+            s += x + x + x - 1
+        # x + 1 case
+        if is_square(3 * x + 1) and is_square(x - 1) and x + x + x + 1 <= limit:
+            s += x + x + x + 1
+        x += 2
+    print(s)
 
 
 def main2():
@@ -41,5 +45,4 @@ def main2():
 
 
 if __name__ == "__main__":
-    main2()
-
+    main()
