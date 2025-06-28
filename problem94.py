@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import numpy as np
-from gmpy2 import mpz, is_square # type: ignore
+from gmpy2 import mpz, is_square  # type: ignore
 
 # def is_square(x):
 #     return x == int(x**.5)**2

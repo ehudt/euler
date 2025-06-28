@@ -1,7 +1,7 @@
 from collections import defaultdict
 from itertools import combinations
 from typing import Generator, Tuple
-from gmpy2 import is_square # type: ignore
+from gmpy2 import is_square  # type: ignore
 
 
 def gen_replacements(a: str, b: str) -> Generator[Tuple[int, int]]:
