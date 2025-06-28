@@ -6,6 +6,8 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "gmpy2>=2.2.1",
+    "gmpy2-stubs>=2.2.1.5",
     "ipython>=9.2.0",
     "numpy>=2.2.6",
+    "tqdm>=4.67.1",
 ]

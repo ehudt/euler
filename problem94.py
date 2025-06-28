@@ -1,27 +1,29 @@
 #!/usr/bin/env python3
+import gc
+from tqdm import tqdm
+from gmpy2 import mpfr, sqrt
+import gmpy2
 
-import numpy as np
-from gmpy2 import mpz, is_square  # type: ignore
+ctx = gmpy2.get_context()
+ctx.precision = 128
 
-# def is_square(x):
-#     return x == int(x**.5)**2
+limit = 1000000000
+
+
+def check_area(a, b2):
+    b = b2 / 2
+    c = sqrt(a * a - b * b)
+    area = mpfr(b * c)
+    if area.is_integer() and a + a + b2 <= limit:
+        return a + a + b2
+    return 0
 
 
 def main():
-    print("Problem 94")
-    limit = mpz(1000 * 1000 * 1000)
     s = 0
-    x = 1
-    while x <= limit:
-        # x - 1 case
-        area1 = ((3 * x - 1) * (x + 1)) / 4 * ((x - 1) * (x - 1) / 4)
-        if is_square(int(area1)) and x + x + x - 1 <= limit:
-            s += x + x + x - 1
-        area2 = ((3 * x + 1) * (x - 1)) / 4 * ((x + 1) * (x + 1) / 4)
-        # x + 1 case
-        if is_square(int(area2)) and x + x + x + 1 <= limit:
-            s += x + x + x + 1
-        x += 1
+    for a in tqdm(range(limit // 3 + 10), desc="Processing"):
+        s += check_area(a, a - 1)
+        s += check_area(a, a + 1)
     print(s)
 
 
