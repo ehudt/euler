@@ -1,11 +1,17 @@
 from collections import defaultdict
-from itertools import combinations
+from itertools import combinations, permutations
 from typing import Generator, Tuple
 from gmpy2 import is_square  # type: ignore
 
 
 def gen_replacements(a: str, b: str) -> Generator[Tuple[int, int]]:
-    yield (1, 2)
+    for perm in permutations("1234567890", len(a)):
+        map = {x: perm[i] for i, x in enumerate(a)}
+        a_repl = "".join([map[x] for x in a])
+        b_repl = "".join([map[x] for x in b])
+        if a_repl[0] == "0" or b_repl[0] == "0":
+            continue
+        yield int(a_repl), int(b_repl)
 
 
 def main():
@@ -17,10 +23,10 @@ def main():
         anagram_classes["".join(sorted(word))].append(word)
     #   1.1 generate all anagram pairs
     pairs = []
-    for anagram_class in anagram_classes:
-        if len(anagram_class) <= 1:
+    for _, values in anagram_classes.items():
+        if len(values) <= 1:
             continue
-        for a, b in combinations(anagram_class, 2):
+        for a, b in combinations(values, 2):
             pairs.append((a, b))
     # 2. for each anagram pair
     max_square = 0
