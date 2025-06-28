@@ -12,16 +12,16 @@ def main():
     limit = mpz(1000 * 1000 * 1000)
     s = 0
     x = 1
-    while x + x + x - 1 <= limit:
+    while x <= limit:
         # x - 1 case
-        area1 = ((3 * x - 1) * (x + 1)) // 4 * ((x - 1) * (x - 1) // 4)
-        if is_square(area1) and x + x + x - 1 <= limit:
+        area1 = ((3 * x - 1) * (x + 1)) / 4 * ((x - 1) * (x - 1) / 4)
+        if is_square(int(area1)) and x + x + x - 1 <= limit:
             s += x + x + x - 1
-        area2 = ((3 * x + 1) * (x - 1)) // 4 * ((x + 1) * (x + 1) // 4)
+        area2 = ((3 * x + 1) * (x - 1)) / 4 * ((x + 1) * (x + 1) / 4)
         # x + 1 case
-        if is_square(area2) and x + x + x + 1 <= limit:
+        if is_square(int(area2)) and x + x + x + 1 <= limit:
             s += x + x + x + 1
-        x += 2
+        x += 1
     print(s)
 
 
