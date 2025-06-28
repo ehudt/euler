@@ -1,12 +1,11 @@
 from collections import defaultdict
 from itertools import combinations
 from typing import Generator, Tuple
-from gmpy2 import is_square
+from gmpy2 import is_square # type: ignore
 
 
 def gen_replacements(a: str, b: str) -> Generator[Tuple[int, int]]:
     yield (1, 2)
-
 
 
 def main():
@@ -32,4 +31,8 @@ def main():
             if is_square(a_num) and is_square(b_num):
                 max_square = max(max_square, max(a_num, b_num))
     # 3. return max_square
-    return max_square
+    print(max_square)
+
+
+if __name__ == "__main__":
+    main()
